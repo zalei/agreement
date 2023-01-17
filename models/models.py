@@ -6,6 +6,15 @@ class AgreementContract(models.Model):
   _name = 'agreement.contract'
   _description = 'Договоры'
 
+  def send_for_approval(self):
+    self.state = 'for_approval'
+
+  def do_enabled(self):
+    self.state = 'enabled'
+
+  def submit_for_revision(self):
+    self.state = 'draft'
+
   @api.model
   def create(self, vals):
     if vals.get('number', _('New')) == _('New'):
