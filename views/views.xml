@@ -37,18 +37,22 @@
         <form>
           <header>
             <button name="send_for_approval" string="Отправить на согласование" class="oe_highlight"
-                   type="object" attrs="{'invisible': [('state','!=','draft')]}"/>
+                   type="object" attrs="{'invisible': ['|', ('state','!=','draft'), ('is_current_user_author','=',False)]}"/>
             <button name="do_enabled" string="Согласовать" class="oe_highlight"
-                   type="object" attrs="{'invisible': [('state','!=','for_approval')]}"/>
+                    type="object" attrs="{'invisible': [('state','!=','for_approval')]}"
+                    groups="agreement.group_manager"/>
             <button name="submit_for_revision" string="Отправить на доработку" class="oe_highlight"
-                   type="object" attrs="{'invisible': [('state','!=','for_approval')]}"/>
+                    type="object" attrs="{'invisible': [('state','!=','for_approval')]}"
+                    groups="agreement.group_manager"/>
 
             <field name="state" widget="statusbar"/>
+
           </header>
           <sheet>
             <h2>Договор <field name="number"/></h2>
             <group>
               <group>
+                <field name="is_current_user_author" invisible="1"/>
                 <field name="kind_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                 <field name="author_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                 <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>

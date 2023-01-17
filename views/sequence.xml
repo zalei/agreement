@@ -1,4 +1,4 @@
-<data>
+<data noupdate="1">
    <record id="seq_agreement_contract_number" model="ir.sequence">
        <field name="name">Номер договора</field>
        <field name="code">agreement.contract</field>

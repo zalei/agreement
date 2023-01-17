@@ -47,6 +47,12 @@ class AgreementContract(models.Model):
   author_id = fields.Many2one('res.users', string='Автор', default=lambda self: self.env.user,
                               required=True, tracking=True)
 
+  def _is_current_user_author(self):
+    for contract_id in self:
+      contract_id.is_current_user_author = self.env.user.id == self.author_id.id
+  is_current_user_author = fields.Boolean(string='Текущий пользователь - автор договора',
+                                          compute='_is_current_user_author', store=False)
+
   def do_auto_close_contracts(self):
     close_contract_ids = self.env['agreement.contract'].search([('state', '=', 'enabled'),
                                                                 ('end_date', '<=', fields.Date.today())])
