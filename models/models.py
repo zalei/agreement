@@ -16,6 +16,17 @@ class AgreementContract(models.Model):
   def submit_for_revision(self):
     self.state = 'draft'
 
+    message = f"Договор [{self.number}] отправлен на доработку"
+    channel = self.env['mail.channel'].channel_get(
+      [self.author_id.partner_id.id])
+    channel_id = self.env['mail.channel'].browse(channel["id"])
+    channel_id.message_post(
+      body=(message),
+      message_type='notification',
+      subtype_xmlid='mail.mt_note',
+    )
+
+
   @api.model
   def create(self, vals):
     if vals.get('number', _('New')) == _('New'):
