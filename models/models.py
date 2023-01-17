@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api, _
 
+class AgreementContract(models.Model):
+  _name = 'agreement.contract'
+  _description = 'agreement.contract'
 
-# class agreement(models.Model):
-#     _name = 'agreement.agreement'
-#     _description = 'agreement.agreement'
+  @api.model
+  def create(self, vals):
+    if vals.get('number', _('New')) == _('New'):
+      vals['number'] = self.env['ir.sequence'].next_by_code('agreement.contract')
+    return super().create(vals)
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+  # number = fields.Char('Номер', default=lambda self: _('New'), copy=False, readonly=True, tracking=True)
+  number = fields.Char('Номер', default=lambda self: _('New'))

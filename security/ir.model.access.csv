@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_agreement_agreement,agreement.agreement,model_agreement_agreement,base.group_user,1,1,1,1
+agreement.access_contract,agreement_access_contract,model_agreement_contract,base.group_user,1,0,0,0
+
+agreement.access_contract_employee,agreement_access_contract_employee,model_agreement_contract,agreement.group_employee,1,1,1,1

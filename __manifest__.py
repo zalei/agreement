@@ -14,8 +14,10 @@
     'depends': ['base'],
 
     'data': [
-        'security/ir.model.access.csv',
         'views/views.xml',
+        'views/sequence.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
     ],
 
     'installable': True,

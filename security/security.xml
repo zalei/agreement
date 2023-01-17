@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record model="ir.module.category" id="agreement.agreement_groups">
+			<field name="name">Роли пользователей для модуля "Договоры"</field>
+			<field name="sequence">0</field>
+		</record>
+		<record id="group_employee" model="res.groups">
+			<field name="name">employee</field>
+			<field name="category_id" ref="agreement.agreement_groups"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+			<field name="comment">Сотрудник</field>
+		</record>
+		<record id="group_manager" model="res.groups">
+			<field name="name">manager</field>
+			<field name="category_id" ref="agreement.agreement_groups"/>
+			<field name="implied_ids" eval="[(4, ref('agreement.group_employee'))]"/>
+			<field name="comment">Руководитель</field>
+		</record>
+	</data>
+</odoo>
