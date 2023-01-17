@@ -13,11 +13,12 @@ class AgreementContract(models.Model):
     return super().create(vals)
 
   number = fields.Char('Номер', default=lambda self: _('New'), copy=False, readonly=True, tracking=True)
-  partner_id = fields.Many2one('res.partner', string='Partner', required=True, ondelete='restrict')
+  partner_id = fields.Many2one('res.partner', string='Клиент', required=True, ondelete='restrict')
+  kind_id = fields.Many2one('agreement.contract.type', string='Вид договора', required=True)
   state = fields.Selection([('draft', 'Черновик'),
                             ('for_approval', 'На согласовании'),
                             ('enabled', 'Активен'),
-                            ('closed', 'Завершен')], default='draft', required=True)
+                            ('closed', 'Завершен')], string='Статус', default='draft', required=True)
 
   start_date = fields.Date('Дата начала', required=True)
   end_date = fields.Date('Дата завершения', required=True)
