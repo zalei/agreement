@@ -11,7 +11,7 @@
         Тестовое задание (Модуль "Договоры")
     """,
 
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
 
     'data': [
         'views/views.xml',
