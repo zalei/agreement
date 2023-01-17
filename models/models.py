@@ -34,6 +34,12 @@ class AgreementContract(models.Model):
 
   author_id = fields.Many2one('res.users', string='Автор', default=lambda self: self.env.user, required=True)
 
+  def do_auto_close_contracts(self):
+    close_contract_ids = self.env['agreement.contract'].search([('state', '=', 'enabled'),
+                                                                ('end_date', '<=', fields.Date.today())])
+    for contract_id in close_contract_ids:
+      contract_id.state = 'closed'
+
 
 class AgreementContractType(models.Model):
   _name = 'agreement.contract.type'

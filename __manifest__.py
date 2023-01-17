@@ -17,6 +17,8 @@
         'views/views.xml',
         'views/sequence.xml',
         'security/security.xml',
+        'security/rules.xml',
+        'security/cron.xml',
         'security/ir.model.access.csv',
     ],
 

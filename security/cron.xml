@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+  <data noupdate="1">
+    <record id="ir_cron_do_auto_close_contracts" model="ir.cron">
+      <field name="name">Автоматическое завершение договоров</field>
+      <field name="user_id" ref="base.user_root"/>
+      <field name="model_id" ref="model_agreement_contract"/>
+      <field name="state">code</field>
+      <field name="code">model.do_auto_close_contracts()</field>
+      <field name="interval_number">24</field>
+      <field name="interval_type">hours</field>
+      <field name="nextcall" eval="(datetime.utcnow() + timedelta(days=0)).strftime('%Y-%m-%d 01:00:00')"/>
+      <field name="numbercall">-1</field>
+      <field name="active" eval="True"/>
+      <field name="doall" eval="False"/>
+    </record>
+  </data>
+</odoo>
