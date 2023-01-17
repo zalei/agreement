@@ -2,3 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 agreement.access_contract,agreement_access_contract,model_agreement_contract,base.group_user,1,0,0,0
 
 agreement.access_contract_employee,agreement_access_contract_employee,model_agreement_contract,agreement.group_employee,1,1,1,1
+agreement.access_contract_type_employee,agreement_access_contract_type_employee,model_agreement_contract_type,agreement.group_employee,1,0,0,0
+
+agreement.access_contract_type_manager,agreement_access_contract_type_manager,model_agreement_contract_type,agreement.group_manager,1,1,1,0

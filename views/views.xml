@@ -12,6 +12,55 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="agreement.contract_type_list">
+      <field name="name">agreement.contract.type.list</field>
+      <field name="model">agreement.contract.type</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- ******************** explicit form view definition ******************** -->
+
+<!--    <record model="ir.ui.view" id="agreement.contract_form">-->
+<!--      <field name="name">agreement.contract.form</field>-->
+<!--      <field name="model">agreement.contract</field>-->
+<!--      <field name="arch" type="xml">-->
+<!--        <form>-->
+<!--          <field name="number"/>-->
+<!--        </form>-->
+<!--      </field>-->
+<!--    </record>-->
+
+    <record model="ir.ui.view" id="agreement.contract_type_form">
+      <field name="name">agreement.contract.type.form</field>
+      <field name="model">agreement.contract.type</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- ******************** explicit search definition ******************** -->
+
+    <record model="ir.ui.view" id="agreement.contract_type_search">
+      <field name="name">agreement.contract.type.search</field>
+      <field name="model">agreement.contract.type</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" filter_domain="[('name','ilike',self)]"/>
+        </search>
+      </field>
+    </record>
+
+
     <!-- ******************** actions opening views on models ******************** -->
 
     <record model="ir.actions.act_window" id="agreement.contract_action">
@@ -20,15 +69,21 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <record model="ir.actions.act_window" id="agreement.contract_type_action">
+      <field name="name">Виды договоров</field>
+      <field name="res_model">agreement.contract.type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
 
 
     <!-- Top menu item -->
-    <menuitem name="Договоры" id="menu_root" sequence="0"/>
+    <menuitem name="Договоры" id="agreement.menu_root" sequence="0"/>
 
     <!-- menu categories -->
-    <menuitem name="Договоры" id="contract_menu" parent="menu_root" action="agreement.contract_action"/>
-<!--    <menuitem name="Настройки" id="settings_menu" parent="menu_root" action="agreement.settings_action" groups="agreement.group_manager"/>-->
+    <menuitem name="Договоры" id="agreement.contract_menu" parent="agreement.menu_root" action="agreement.contract_action" sequence="1"/>
+    <menuitem name="Настройки" id="agreement.settings_menu" parent="agreement.menu_root" groups="agreement.group_manager" sequence="2"/>
+      <menuitem name="Виды договоров" id="settings_contract_type_menu" parent="agreement.settings_menu" action="agreement.contract_type_action" groups="agreement.group_manager"/>
 
   </data>
 </odoo>
