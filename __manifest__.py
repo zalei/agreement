@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Agreement",
+    'name': "Договоры",
     'sequence': 1,
     'author': "Zaleusky Yauheny",
     'category': 'Marketing',
